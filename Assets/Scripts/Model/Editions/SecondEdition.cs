@@ -138,8 +138,7 @@ namespace Editions
             {
                 if (!IsTractorBeamFailed())
                 {
-                    // if (!overWrittenInstead) Messages.ShowError("Action is skipped");
-                    Phases.Skip();
+                    action.FinishAction();
                 }
                 else
                 {
@@ -198,9 +197,9 @@ namespace Editions
             (Phases.CurrentSubPhase as DecloakPlanningSubPhase).PerfromTemplatePlanningSecondEdition();
         }
 
-        public override void ReloadAction()
+        public override void ReloadAction(GenericAction action)
         {
-            ActionsList.ReloadAction.RestoreOneCharge();
+            ActionsList.ReloadAction.RestoreOneCharge(action);
         }
 
         public override void SquadBuilderIsOpened()

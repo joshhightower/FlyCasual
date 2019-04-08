@@ -33,7 +33,7 @@ namespace ActionsList
             {
                 CritCard.DiscardEffect();
                 Phases.FinishSubPhase(typeof(SubPhases.CancelCritCheckSubPhase));
-                Phases.CurrentSubPhase.CallBack();
+                FinishAction();
             }
             else
             {
@@ -44,7 +44,7 @@ namespace ActionsList
                     typeof(SubPhases.CancelCritCheckSubPhase),
                     delegate {
                         Phases.FinishSubPhase(typeof(SubPhases.CancelCritCheckSubPhase));
-                        Phases.CurrentSubPhase.CallBack();
+                        FinishAction();
                     });
             }
         }

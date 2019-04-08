@@ -23,6 +23,8 @@ namespace ActionsList
         public string DiceModificationName;
         public string ImageUrl;
 
+        public bool IsNotAnAction;
+
         public bool IsRed
         {
             get { return Color == ActionColor.Red; }
@@ -189,10 +191,28 @@ namespace ActionsList
                     callback();
                 }
             );
+            IsNotAnAction = true;
             ActionTake();
         }
 
         public virtual void RevertActionOnFail(bool hasSecondChance = false) {}
+
+        public void FinishAction()
+        {
+            if (!IsNotAnAction)
+            {
+                IActionSubPhase subphase = (Phases.CurrentSubPhase as IActionSubPhase);
+                if (subphase != null)
+                {
+                    subphase.SavedAction = this;
+                }
+                else
+                {
+                    Debug.Log("Action " + Name + " is performed in strange subphase: " + Phases.CurrentSubPhase.GetType().ToString());
+                }
+            }
+            Phases.CurrentSubPhase.CallBack();
+        }
 
     }
 

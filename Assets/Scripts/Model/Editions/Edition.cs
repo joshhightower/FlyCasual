@@ -53,7 +53,7 @@ namespace Editions
         public abstract void SetShipBaseImage(GenericShip ship);
         public abstract void BarrelRollTemplatePlanning();
         public abstract void DecloakTemplatePlanning();
-        public abstract void ReloadAction();
+        public abstract void ReloadAction(GenericAction action);
         public abstract bool ReinforceEffectCanBeUsed(ArcFacing facing);
         public abstract bool ReinforcePostCombatEffectCanBeUsed(ArcFacing facing);
         public abstract void TimedBombActivationTime(GenericShip ship);

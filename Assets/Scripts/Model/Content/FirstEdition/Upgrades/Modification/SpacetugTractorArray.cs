@@ -71,11 +71,6 @@ namespace ActionsList
             newPhase.SpacetugUpgrade = this.Source;
             newPhase.Start();
         }
-
-        private void FinishAction()
-        {
-            Phases.CurrentSubPhase.CallBack();
-        }
     }
 }
 

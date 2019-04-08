@@ -5,9 +5,14 @@ using System.Collections.Generic;
 
 namespace SubPhases
 {
-
-    public class ActionSubPhase : GenericSubPhase
+    public interface IActionSubPhase
     {
+        GenericAction SavedAction { get; set; }
+    }
+
+    public class ActionSubPhase : GenericSubPhase, IActionSubPhase
+    {
+        public GenericAction SavedAction { get; set; }
 
         public override void Start()
         {
@@ -96,8 +101,10 @@ namespace SubPhases
 namespace SubPhases
 {
 
-    public class ActionDecisonSubPhase : DecisionSubPhase
+    public class ActionDecisonSubPhase : DecisionSubPhase, IActionSubPhase
     {
+        public GenericAction SavedAction { get; set; }
+
         public bool ActionWasPerformed { get; private set; }
 
         public override void PrepareDecision(System.Action callBack)
@@ -118,7 +125,6 @@ namespace SubPhases
                 if (!DecisionWasPreparedAndShown)
                 {
                     Messages.ShowErrorToHuman("This ship cannot perform any actions.");
-                    ActionsHolder.CurrentAction = null;
                     CallBack();
                 }
             }
@@ -194,7 +200,7 @@ namespace SubPhases
 
         public override void SkipButton()
         {
-            ActionsHolder.CurrentAction = null;
+            (PreviousSubPhase as IActionSubPhase).SavedAction = SavedAction;
             CallBack();
         }
 
@@ -205,8 +211,10 @@ namespace SubPhases
 namespace SubPhases
 {
 
-    public class FreeActionDecisonSubPhase : DecisionSubPhase
+    public class FreeActionDecisonSubPhase : DecisionSubPhase, IActionSubPhase
     {
+        public GenericAction SavedAction { get; set; }
+
         public bool ActionWasPerformed { get; private set; }
 
         public override void PrepareDecision(System.Action callBack)
@@ -225,7 +233,6 @@ namespace SubPhases
             {
                 Messages.ShowErrorToHuman(Selection.ThisShip.PilotInfo.PilotName + " cannot perform any free actions.");
                 Selection.ThisShip.IsFreeActionSkipped = true;
-                ActionsHolder.CurrentAction = null;
                 CallBack();
             }
         }
@@ -306,7 +313,6 @@ namespace SubPhases
         public override void SkipButton()
         {
             UI.HideSkipButton();
-            ActionsHolder.CurrentAction = null;
             Selection.ThisShip.IsFreeActionSkipped = true;
             CallBack();
         }

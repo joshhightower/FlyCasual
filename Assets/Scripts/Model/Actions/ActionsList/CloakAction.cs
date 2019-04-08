@@ -18,7 +18,7 @@ namespace ActionsList
 
         public override void ActionTake()
         {
-            Selection.ThisShip.Tokens.AssignToken(typeof(CloakToken), Phases.CurrentSubPhase.CallBack);
+            Selection.ThisShip.Tokens.AssignToken(typeof(CloakToken), FinishAction);
         }
 
         public override bool IsActionAvailable()

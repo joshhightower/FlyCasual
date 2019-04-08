@@ -31,10 +31,7 @@ namespace ActionsList
             else
             {
                 Phases.CurrentSubPhase.Pause();
-                var phase = Phases.StartTemporarySubPhaseNew<SubPhases.BoostPlanningSubPhase>(
-                    "Boost",
-                    Phases.CurrentSubPhase.CallBack
-                );
+                var phase = Phases.StartTemporarySubPhaseNew<SubPhases.BoostPlanningSubPhase>("Boost");
                 phase.HostAction = this;
                 phase.Start();
             }
@@ -229,7 +226,7 @@ namespace SubPhases
             BoostExecutionSubPhase execution = (BoostExecutionSubPhase) Phases.StartTemporarySubPhaseNew(
                 "Boost execution",
                 typeof(BoostExecutionSubPhase),
-                CallBack
+                HostAction.FinishAction
             );
             execution.TheShip = TheShip;
             execution.IsTractorBeamBoost = IsTractorBeamBoost;

@@ -40,7 +40,7 @@ namespace ActionsList
             }
             else
             {
-                Phases.CurrentSubPhase.CallBack();
+                FinishAction();
             }
         }
 

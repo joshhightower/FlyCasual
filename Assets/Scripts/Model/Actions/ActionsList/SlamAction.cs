@@ -28,7 +28,7 @@ namespace ActionsList
         {
             if (Selection.ThisShip.Owner.UsesHotacAiRules)
             {
-                Phases.CurrentSubPhase.CallBack();
+                FinishAction();
             }
             else
             {
@@ -61,7 +61,7 @@ namespace ActionsList
 
         private void AssignWeaponsDisabledToken()
         {
-            Selection.ThisShip.Tokens.AssignToken(typeof(WeaponsDisabledToken), Phases.CurrentSubPhase.CallBack);
+            Selection.ThisShip.Tokens.AssignToken(typeof(WeaponsDisabledToken), FinishAction);
         }
 
         private void PerformSlamManeuver(object sender, System.EventArgs e)

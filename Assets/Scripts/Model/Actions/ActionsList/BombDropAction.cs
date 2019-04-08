@@ -23,7 +23,7 @@ namespace ActionsList
             Phases.StartTemporarySubPhaseOld(
                 "Bomb drop planning",
                 typeof(SubPhases.BombDropPlanningSubPhase),
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
         }
 

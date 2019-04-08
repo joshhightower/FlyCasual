@@ -106,7 +106,7 @@ namespace Abilities.SecondEdition
             {
                 Source.State.RestoreCharge();
                 Messages.ShowInfo($"Reload: One charge of \"{Source.UpgradeInfo.Name}\" is restored.  {HostShip.PilotInfo.PilotName} gains a Disarmed token.");
-                AssignTokenAndFinish();
+                AssignTokenAndFinish(this);
             }
         }
 

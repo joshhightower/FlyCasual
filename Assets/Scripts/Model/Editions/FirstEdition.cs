@@ -1,4 +1,5 @@
-﻿using Arcs;
+﻿using ActionsList;
+using Arcs;
 using BoardTools;
 using Bombs;
 using Movement;
@@ -117,9 +118,9 @@ namespace Editions
             ship.OnTryAddAvailableDiceModification += Rules.BullseyeArc.CheckBullseyeArc;
         }
 
-        public override void ReloadAction()
+        public override void ReloadAction(GenericAction action)
         {
-            ActionsList.ReloadAction.FlipFaceupRecursive();
+            ActionsList.ReloadAction.FlipFaceupRecursive(action);
         }
 
         public override bool ReinforceEffectCanBeUsed(ArcFacing facing)

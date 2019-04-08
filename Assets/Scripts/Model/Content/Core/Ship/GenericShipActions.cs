@@ -258,7 +258,7 @@ namespace Ship
                         (
                             "Free action decision",
                             typeof(FreeActionDecisonSubPhase),
-                            (Action)delegate {
+                            delegate {
                                 var phase = Phases.CurrentSubPhase as FreeActionDecisonSubPhase;
                                 if (phase != null && phase.ActionWasPerformed)
                                 {

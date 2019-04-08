@@ -21,11 +21,10 @@ namespace ActionsList
         {
             var subphase = Phases.StartTemporarySubPhaseNew<SubPhases.RotateArcDecisionSubPhase>(
                 "Rotate Arc decision",
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
             subphase.EnemiesInArcHolder = HostShip.SectorsInfo.GetEnemiesInAllSectors();
             subphase.Start();
-
         }
 
         public override int GetActionPriority()

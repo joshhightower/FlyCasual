@@ -65,8 +65,6 @@ public static partial class ActionsHolder
 
     public static GenericDamageCard SelectedCriticalHitCard;
 
-    public static GenericAction CurrentAction;
-
     public enum BarrelRollTemplates
     {
         Straight1,
@@ -477,13 +475,12 @@ public static partial class ActionsHolder
         Tooltips.EndTooltip();
         UI.HideSkipButton();
         ship.AddAlreadyExecutedAction(action);
-        CurrentAction = action;
         action.ActionTake();
     }
 
     public static void TakeActionFinish(Action callback)
     {
-        bool isActionSkipped = (ActionsHolder.CurrentAction == null);
+        bool isActionSkipped = (Phases.CurrentSubPhase as IActionSubPhase).SavedAction == null;
 
         if (!isActionSkipped)
         {
@@ -498,7 +495,7 @@ public static partial class ActionsHolder
 
     private static void ActionIsTaken(Action callback)
     {
-        Selection.ThisShip.CallActionIsTaken(ActionsHolder.CurrentAction, callback);
+        Selection.ThisShip.CallActionIsTaken((Phases.CurrentSubPhase as IActionSubPhase).SavedAction, callback);
     }
 
     private static void ActionIsSkipped()

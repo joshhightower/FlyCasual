@@ -24,7 +24,7 @@ namespace ActionsList
         {
             JamTargetSubPhase jamPhase = Phases.StartTemporarySubPhaseNew<JamTargetSubPhase>(
                 "Select target to Jam",
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
             jamPhase.HostAction = this;
             jamPhase.Start();

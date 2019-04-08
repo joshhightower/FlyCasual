@@ -24,7 +24,7 @@ namespace ActionsList
         {
             CoordinateTargetSubPhase subphase = Phases.StartTemporarySubPhaseNew<CoordinateTargetSubPhase>(
                 "Select target for Coordinate",
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
             subphase.HostAction = this;
             subphase.Start();
@@ -110,7 +110,6 @@ namespace SubPhases
         {
             var coordinatingShip = Selection.ThisShip;
             Selection.ThisShip = TargetShip;
-            GenericAction currentAction = ActionsHolder.CurrentAction;
 
             Triggers.RegisterTrigger(
                 new Trigger()
@@ -126,7 +125,6 @@ namespace SubPhases
 
             Triggers.ResolveTriggers(TriggerTypes.OnFreeActionPlanned, (System.Action)delegate {
                 Selection.ThisShip = coordinatingShip;
-                ActionsHolder.CurrentAction = currentAction;
                 Phases.FinishSubPhase(typeof(CoordinateTargetSubPhase));
                 CallBack();
             });

@@ -31,10 +31,7 @@ namespace ActionsList
             {
                 Phases.CurrentSubPhase.Pause();
 
-                BarrelRollPlanningSubPhase subphase = Phases.StartTemporarySubPhaseNew<BarrelRollPlanningSubPhase>(
-                    "Barrel Roll",
-                    Phases.CurrentSubPhase.CallBack
-                );
+                BarrelRollPlanningSubPhase subphase = Phases.StartTemporarySubPhaseNew<BarrelRollPlanningSubPhase>("Barrel Roll");
                 subphase.HostAction = this;
                 subphase.Start();
             }
@@ -445,7 +442,7 @@ namespace SubPhases
         {
             if (TemporaryShipBase == null)
             {
-                PerfromTemporaryShipBasePlanning();
+                PerformTemporaryShipBasePlanning();
             }
             else
             {
@@ -453,7 +450,7 @@ namespace SubPhases
             }
         }
 
-        private void PerfromTemporaryShipBasePlanning()
+        private void PerformTemporaryShipBasePlanning()
         {
             ShowTemporaryShipBase();
 
@@ -484,7 +481,7 @@ namespace SubPhases
             BarrelRollExecutionSubPhase executionSubphase = (BarrelRollExecutionSubPhase) Phases.StartTemporarySubPhaseNew(
                 "Barrel Roll execution",
                 typeof(BarrelRollExecutionSubPhase),
-                CallBack
+                HostAction.FinishAction
             );
 
             executionSubphase.TheShip = TheShip;

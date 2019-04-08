@@ -92,6 +92,8 @@ public static partial class Phases
 
     public static GenericSubPhase StartTemporarySubPhaseNew(string name, System.Type subPhaseType, Action callBack)
     {
+        if (callBack == null) callBack = delegate { };
+
         if (CurrentSubPhase != null) CurrentSubPhase.Pause();
 
         if (DebugManager.DebugPhases) Debug.Log("Temporary phase " + subPhaseType + " is started directly");
@@ -110,7 +112,7 @@ public static partial class Phases
         return CurrentSubPhase;
     }
 
-    public static T StartTemporarySubPhaseNew<T>(string name, Action callBack) where T : GenericSubPhase, new()
+    public static T StartTemporarySubPhaseNew<T>(string name, Action callBack = null) where T : GenericSubPhase, new()
     {
         return (T)StartTemporarySubPhaseNew(name, typeof(T), callBack);
     }

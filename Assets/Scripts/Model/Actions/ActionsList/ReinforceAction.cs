@@ -22,7 +22,7 @@ namespace ActionsList
             ReinforceSideSubphase decisionSubphase = (ReinforceSideSubphase)Phases.StartTemporarySubPhaseNew(
                 Name,
                 typeof(ReinforceSideSubphase),
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
 
             decisionSubphase.InfoText = "Select a side";

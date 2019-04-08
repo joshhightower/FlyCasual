@@ -91,7 +91,7 @@ namespace ActionsList
         {
             SelectTargetLockActionSubPhase subphase = Phases.StartTemporarySubPhaseNew<SelectTargetLockActionSubPhase>(
                 "Select target for Target Lock",
-                Phases.CurrentSubPhase.CallBack
+                FinishAction
             );
             subphase.HostAction = this;
             subphase.Start();

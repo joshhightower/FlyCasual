@@ -61,7 +61,7 @@ namespace ActionsList
 
         public override void ActionTake()
         {
-            Selection.ThisShip.Tokens.AssignToken(typeof(EvadeToken), Phases.CurrentSubPhase.CallBack);
+            Selection.ThisShip.Tokens.AssignToken(typeof(EvadeToken), FinishAction);
         }
 
         public override int GetActionPriority()
